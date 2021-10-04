@@ -768,7 +768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745770314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9, y: -3.02, z: 0}
+  m_LocalPosition: {x: -5.96, y: -3.04, z: 0}
   m_LocalScale: {x: 1.064211, y: -1.0345935, z: 1}
   m_Children:
   - {fileID: 887778627}
@@ -836,3 +836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnSpeed: 200
+  xRange: 10.5
+  yRange: 4.5
+  projectile: {fileID: 7326796206660514293, guid: fca8a8784a344410fa242bd39f3fcc65, type: 3}
+  firePoint: {fileID: 887778627}
