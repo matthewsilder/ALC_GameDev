@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         // Applying movement to the rigidbody
         Vector3 dir = transform.right * x + transform.forward * z;
         // Jump direction
-        dir = rb.velocity.y;
+        dir.y = rb.velocity.y;
         // Apply direction to camera movement
         rb.velocity = dir;
     }
