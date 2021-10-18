@@ -6,30 +6,45 @@ public class PlayerController : MonoBehaviour
 {
     // Movement
     public float moveSpeed; // How fast the player moves
-    public float jumpForce;
+
+    public float jumpForce; // How high the player jumps
     //Camera
+
     public float lookSensitivity; // Mouse movement sensitivity
+
     public float maxLookX; // Lowest down we can look
+
     public float minLookX; // Highest up we can look
+    
     private float rotX;    // Current x rotation of the camera
 
     //Components
     private Camera cam;
     private Rigidbody rb;
 
+    private Weapon weapon;
+
     void Awake()
     {
         // Get the components
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+        weapon = GetComponent<Weapon>();
     }
     // Update is called once per frame
     void Update()
     {
         Move();
         CamLook();
+        // Jump Bittpm
         if(Input.GetButtonDown("Jump"))
             Jump();
+        // Fire Button
+        if(Input.GetButton("Fire1"))
+        {
+            if(weapon.CanShoot())
+                weapon.Shoot();
+        }
     }
     void Move()
     {   // Get Keyboard input with move speed
