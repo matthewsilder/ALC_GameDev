@@ -23,13 +23,13 @@ public class Weapon : MonoBehaviour
         }
     }
     // Can we shoot a bullet
-    public bool CansShoot()
+    public bool CanShoot()
     {
         if(Time.time - lastShootTime >= shootRate)
         {
             if(curAmmo > 0 || infiniteAmmo == true)
             {
-                return ture;
+                return true;
             }
         }
         return false;
@@ -37,24 +37,13 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
+        // Adjust shoot time and reduce ammo by one
         lastShootTime = Time.time;
         curAmmo --; 
 
         GameObject bullet = Instantiate(bulletProjectile, muzzle.position, muzzle.rotation);
 
         // Set Velocity of bulletProjectile
-        bullet.GetComponet<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
     }
 }
