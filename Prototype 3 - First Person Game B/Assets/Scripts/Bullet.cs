@@ -8,16 +8,29 @@ public class Bullet : MonoBehaviour
     public float lifeTime;
     private float shootTime;
     
+    void OnEnable()
+    {
+        shootTime = Time.time;
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    void OnEnable()
+    void OnTriggerEnter(Collider other)
     {
-        shootTime = Time.time;
+        //Did we hit the target aka player
+        if(other.CompareTag("Player"))
+            other.GetComponent<PlayerController>().TakeDamage(damage);
+        else
+            if(other.CompareTag("Enemy"))
+                other.GetComponent<Enemy>().TakeDamage(damage);
+        // Disable Bullet
+        gameObject.SetActive(false);
     }
+
+   
     // Update is called once per frame
     void Update()
     {
