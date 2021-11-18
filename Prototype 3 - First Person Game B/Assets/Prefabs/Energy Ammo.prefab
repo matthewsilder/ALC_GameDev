@@ -110,3 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   value: 10
+  rotationSpeed: 0.5
+  bobSpeed: 0.33
+  bobHeight: 0.25
