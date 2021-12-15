@@ -38,9 +38,22 @@ public class PlayerController : MonoBehaviour
         // Disable Cursor
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    void Start()
+    {
+        //Initialize the UI
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
+        GameUI.instance.UpdateScoreText(0);
+        GameUI.instance.UpdateAmmoText(weapon.curAmmo, weapon.maxAmmo);
+
+    }
     // Update is called once per frame
     void Update()
     {
+        //Don't do anything when the game is paused
+        if(GameManager.intance.gamePaused == true)
+            return;
+
         Move();
         CamLook();
         // Jump Button
@@ -91,17 +104,21 @@ public class PlayerController : MonoBehaviour
 
         if(curHP <= 0)
             Die();
+        
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
     void Die()
     {
-        print("Game Over");
+        GameManager.instance.LoseGame();
     }
     public void GiveHealth(int amountToGive)
     {
         curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP);
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
     public void GiveAmmo(int amountToGive)
     {
         weapon.curAmmo = Mathf.Clamp(weapon.curAmmo + amountToGive, 0, weapon.maxAmmo);
+        GameUI.instance.UpdateAmmoText(weapon.curAmmo, weapon.maxAmmo);
     }
 }

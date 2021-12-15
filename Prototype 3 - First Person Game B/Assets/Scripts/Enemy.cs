@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public int curHP;
     public int maxHP;
-    public int ScoreToGive;
+    public int scoreToGive;
 
     [Header ("Movement")]
     public float moveSpeed; 
@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private Weapon weapon; 
     private GameObject target;
 
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class Enemy : MonoBehaviour
         //Gather the Components
         weapon = GetComponent<Weapon>();
         target = FindObjectOfType<PlayerController>().gameObject;
+        rb = GetComponent<Rigidbody>();
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
     }
 
@@ -64,7 +67,11 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.AddForce(Vector3.back * 10, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        GameManager.instance.AddScore(scoreToGive);
+        Destroy(gameObject,1);
     }
 
     // Update is called once per frame

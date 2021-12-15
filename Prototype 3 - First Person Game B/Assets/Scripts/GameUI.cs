@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
-    [Header("Hud")]
+    [Header("HUD")]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI ammoText;
     public Image healthBarFill;
@@ -19,7 +20,7 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI endGameHeaderText;
     public TextMeshProUGUI endGameScoreText;
 
-    // Instace
+    // Instance
     public static GameUI instance;
 
     void Awake()
@@ -63,21 +64,21 @@ public class GameUI : MonoBehaviour
     public void SetEndGameScreen(bool won, int score)
     {
         endGameScreen.SetActive(true);
-        endGameHeaderText.text = won == true ? "You win and are the best" : "Why";
-        endGameHeaderText.color = won == true ? Color.green : Color.red;
+        endGameHeaderText.text = won == true ? "You Win you are the best" : "Why";
+        endGameHeaderText.color = won == true ? Color.green : Color.red; 
         endGameScoreText.text = "<b>Score</b>\n" + score;
     }
 
     public void OnResumeButton()
     {
-
+        GameManager.instance.TogglePauseGame();
     }
     public void OnRestartButton()
     {
-        SceneManger.LoadScreen("Game");
+        SceneManager.LoadScene("Game");
     }
     public void OnMenuButton()
     {
-        SceneManage.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
     }
 }
