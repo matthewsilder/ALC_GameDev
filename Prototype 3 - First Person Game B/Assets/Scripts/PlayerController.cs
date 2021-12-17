@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Don't do anything when the game is paused
-        if(GameManager.intance.gamePaused == true)
+        if(GameManager.instance.gamePaused == true)
             return;
 
         Move();

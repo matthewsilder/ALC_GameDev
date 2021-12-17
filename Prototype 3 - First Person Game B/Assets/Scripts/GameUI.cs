@@ -64,7 +64,7 @@ public class GameUI : MonoBehaviour
     public void SetEndGameScreen(bool won, int score)
     {
         endGameScreen.SetActive(true);
-        endGameHeaderText.text = won == true ? "You Win you are the best" : "Why";
+        endGameHeaderText.text = won == true ? "You win you are the best" : "Why";
         endGameHeaderText.color = won == true ? Color.green : Color.red; 
         endGameScoreText.text = "<b>Score</b>\n" + score;
     }

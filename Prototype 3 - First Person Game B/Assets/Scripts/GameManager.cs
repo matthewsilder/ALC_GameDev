@@ -13,23 +13,22 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //Set the instace of this script
-        instance = this;
-
+        //Set the instance of this script
+        instance = this; 
     }
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;   
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Cancel"))
-        {
-            TogglePauseGame();
-        }
+       if(Input.GetButton("Cancel"))
+       {
+           TogglePauseGame();
+       } 
     }
 
     public void TogglePauseGame()
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
         gamePaused = !gamePaused;
         Time.timeScale = gamePaused == true ? 0.0f : 1.0f;
 
-        //Toggle Pause Menu
+        //Toggle Pause Menu 
         GameUI.instance.TogglePauseMenu(gamePaused);
 
         //Toggle Mouse Cursor
@@ -51,23 +50,24 @@ public class GameManager : MonoBehaviour
         
         //Update score text
         GameUI.instance.UpdateScoreText(curScore);
-        
-        //Have we reached the score to win
+
+        //Have we reached the score to win?
         if(curScore >= scoreToWin)
             WinGame();
     }
 
     public void WinGame()
     {
-        //Set game screen
+        //Set end game screen
         GameUI.instance.SetEndGameScreen(true,curScore);
     }
 
     public void LoseGame()
     {
         //Set the end game screen
-        GameUI.instance.GetEndgameScreen(false, curScore);
-        Time.timescale = 0.0f;
+        GameUI.instance.SetEndGameScreen(false, curScore);
+        Time.timeScale = 0.0f;
         gamePaused = true;
     }
+    
 }
