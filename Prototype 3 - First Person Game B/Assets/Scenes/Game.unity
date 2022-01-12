@@ -1172,7 +1172,7 @@ MonoBehaviour:
   maxAmmo: 10
   infiniteAmmo: 1
   bulletSpeed: 80
-  shootRate: 0.001
+  shootRate: 0.5
   lastShootTime: 0
 --- !u!114 &229868998
 MonoBehaviour:

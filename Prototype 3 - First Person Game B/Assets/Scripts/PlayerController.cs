@@ -50,9 +50,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Don't do anything when the game is paused
-        if(GameManager.instance.gamePaused == true)
-            return;
+    
 
         Move();
         CamLook();
